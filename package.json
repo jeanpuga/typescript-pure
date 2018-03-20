@@ -1,0 +1,16 @@
+{
+    "name": "foo-ip",
+    "version": "0.0.1",
+    "scripts": {
+        "foo": "./node_modules/ts-node/dist/bin.js main.ts"
+    },
+    "dependencies": {
+        "chalk": "^2.3.2",
+        "request": "^2.85.0",
+        "ts-node": "^3.2.0",
+        "typescript": "^2.4.1"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.7"
+    }
+}
