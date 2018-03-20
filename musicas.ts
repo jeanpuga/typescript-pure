@@ -1,10 +1,10 @@
-import Request from 'request';
+import * as request from 'request';
 
 
 
 export  class Musicas{
 
-    pah(): string{
+    pah(): Promise<string[]> {
         let options : any = {
             url: this.url(),
             method: 'GET',
@@ -13,10 +13,21 @@ export  class Musicas{
             }
         }
 
-        const request = new Request();
-        return request(options,e=>JSON.stringify([...e.querySelectorAll('strong')].map(e=>e.textContent)))
-        ;
+        return new Promise((resolve, reject) => {
+            request(
+                options,
+                response => {
+                    console.log(response);
+                    resolve(
+                        [...response.querySelectorAll('strong')]
+                        .map(e=>e.textContent)
+                    )
+                }
+                
+            )
+        });    
     }
+
 
     private url() {
         return 'http://ultimateclassicrock.com/top-100-classic-rock-songs/';

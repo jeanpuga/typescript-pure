@@ -1,5 +1,6 @@
 "use strict";
-const request_1 = require("request");
+Object.defineProperty(exports, "__esModule", { value: true });
+const request = require("request");
 class Musicas {
     pah() {
         let options = {
@@ -9,8 +10,13 @@ class Musicas {
                 'Content-Type': 'application/json'
             }
         };
-        const request = new request_1.default();
-        return request(options, e => JSON.stringify([...e.querySelectorAll('strong')].map(e => e.textContent)));
+        return new Promise((resolve, reject) => {
+            request(options, response => {
+                console.log(response);
+                resolve([...response.querySelectorAll('strong')]
+                    .map(e => e.textContent));
+            });
+        });
     }
     url() {
         return 'http://ultimateclassicrock.com/top-100-classic-rock-songs/';

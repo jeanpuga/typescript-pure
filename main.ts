@@ -3,22 +3,19 @@ import * as chalk from 'chalk'
 
 
 class Startup {
-    public static main(): number {
+     main(): number {
         
         let getter :any =  new Musicas();
 
-        let saida:string =getter.pah();
-        
-
-        console.log(  saida )  
-
-
-
-
+        getter.pah().then((saida) => {
+            console.log(saida)  
+        });
+            
         return 0;
     }
 
 
 
 }
-Startup.main();
+let a = new Startup();
+a.main();

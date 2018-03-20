@@ -1,12 +1,15 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const musicas_1 = require("./musicas");
 class Startup {
-    static main() {
+    main() {
         let getter = new musicas_1.Musicas();
-        let saida = getter.pah();
-        console.log(saida);
+        getter.pah().then((saida) => {
+            console.log(saida);
+        });
         return 0;
     }
 }
-Startup.main();
+let a = new Startup();
+a.main();
 //# sourceMappingURL=main.js.map
