@@ -1,35 +1,41 @@
 import * as request from 'request';
+import * as cheerio from 'cheerio';
 
+
+
+// const request = require('request');
+ 
 
 
 export  class Musicas{
+    
+    //[...document.querySelectorAll('#corpoMateria > p')].map(e=>e.textContent)
 
-    pah(): Promise<string[]> {
-        let options : any = {
-            url: this.url(),
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
+       pah(callback) {
+        let url:string='https://whiplash.net/materias/melhores/153657.html';
 
-        return new Promise((resolve, reject) => {
-            request(
-                options,
-                response => {
-                    console.log(response);
-                    resolve(
-                        [...response.querySelectorAll('strong')]
-                        .map(e=>e.textContent)
-                    )
-                }
-                
-            )
-        });    
-    }
+        // request(, null, (err, res) => {
+        //     if (err) { return console.log('erro'+err); }
+
+        //     const document = cheerio.load(res);
+
+        //     console.log(document);
+        //     //console.log('certo:'+[...res.find('#corpoMateria > p')].map(e=>e.textContent));
+        //   });
+
+          request(url, function(error, response, html) {
+
+                var $ = cheerio.load(html);
+                [].slice.call($('#corpoMateria > p'),null).map(e=>e.firstChild).map(e=>(0?e.nodeValue:''))
+                console.log('Done downloading, encrypting, and saving!');
+            });
 
 
-    private url() {
-        return 'http://ultimateclassicrock.com/top-100-classic-rock-songs/';
-    }
-}
+
+        
+      }
+
+      
+
+
+      

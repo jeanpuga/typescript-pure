@@ -4,9 +4,7 @@ const musicas_1 = require("./musicas");
 class Startup {
     main() {
         let getter = new musicas_1.Musicas();
-        getter.pah().then((saida) => {
-            console.log(saida);
-        });
+        getter.pah();
         return 0;
     }
 }

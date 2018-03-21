@@ -1,5 +1,4 @@
 import { Musicas } from "./musicas";
-import * as chalk from 'chalk'
 
 
 class Startup {
@@ -7,10 +6,8 @@ class Startup {
         
         let getter :any =  new Musicas();
 
-        getter.pah().then((saida) => {
-            console.log(saida)  
-        });
-            
+        getter.pah();
+
         return 0;
     }
 

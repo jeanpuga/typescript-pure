@@ -1,25 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = require("request");
+const cheerio = require("cheerio");
+// const request = require('request');
 class Musicas {
-    pah() {
-        let options = {
-            url: this.url(),
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-        return new Promise((resolve, reject) => {
-            request(options, response => {
-                console.log(response);
-                resolve([...response.querySelectorAll('strong')]
-                    .map(e => e.textContent));
-            });
+    //[...document.querySelectorAll('#corpoMateria > p')].map(e=>e.textContent)
+    pah(callback) {
+        let url = 'https://whiplash.net/materias/melhores/153657.html';
+        // request(, null, (err, res) => {
+        //     if (err) { return console.log('erro'+err); }
+        //     const document = cheerio.load(res);
+        //     console.log(document);
+        //     //console.log('certo:'+[...res.find('#corpoMateria > p')].map(e=>e.textContent));
+        //   });
+        request(url, function (error, response, html) {
+            var $ = cheerio.load(html);
+            [].slice.call($('#corpoMateria > p'), null).map(e => e.firstChild).map(e => (0 ? e.nodeValue : ''));
+            console.log('Done downloading, encrypting, and saving!');
         });
-    }
-    url() {
-        return 'http://ultimateclassicrock.com/top-100-classic-rock-songs/';
     }
 }
 exports.Musicas = Musicas;
